@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta
+      charset="utf-8"
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <title>Passwords KC</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Separa os botões Import, Export e Print -->
+    <div class="controles">
+      <input
+        type="file"
+        id="inputArquivo"
+        accept=".json"
+        style="display: none"
+      />
+
+      <button
+        id="btnImportar"
+        onclick="document.getElementById('inputArquivo').click()"
+      >
+        Importar JSON
+      </button>
+      <button onclick="exportarJSON()">Exportar JSON</button>
+      <button onclick="window.print()">Imprimir</button>
+    </div>
+
+    <!-- Container para os cards de senhas -->
+    <section class="cards-section">
+      <!-- Cabeçalho do caderno de senhas -->
+      <div class="cards-section-header">
+        <div>
+          <div class="cards-section-title">Caderno de Senhas</div>
+          <div class="cards-section-subtitle">
+            Armazenamento offline • Impressão segura
+          </div>
+        </div>
+      </div>
+
+      <!-- Container onde os cards de senhas serão inseridos dinamicamente -->
+      <div id="container-cards"></div>
+    </section>
+
+    <!-- Modal para edição de senhas -->
+    <section id="meuModal" class="modal">
+      <div class="modal-content">
+        <h3>Editar Dados</h3>
+        <label>Domínio</label>
+        <input
+          type="text"
+          id="editDominio"
+          placeholder="kenedycampos.com.br"
+        />
+        <label>Serviço</label>
+        <input type="text" id="editSite" placeholder="Serviço" />
+        <label>Usuário</label>
+        <input type="text" id="editUsuario" placeholder="Usuário" />
+        <label>E-mail</label>
+        <input type="text" id="editEmail" placeholder="E-mail" />
+        <label>Senha</label>
+        <input type="text" id="editSenha" placeholder="Senha" />
+        <label>Chave secreta (2FA)</label>
+        <input type="text" id="editSecretKey" placeholder="Chave secreta" />
+        <label>Códigos únicos (uma por linha)</label>
+        <textarea
+          id="editCodes"
+          rows="3"
+          placeholder="cada código em uma linha"
+        ></textarea>
+        <label>Anotações</label>
+        <textarea id="editNotes" rows="3" placeholder="Anotações"></textarea>
+        <div style="display: flex; gap: 10px; margin-top: 10px">
+          <button onclick="salvarEdicao()" class="btn-salvar">Salvar</button>
+          <button onclick="fecharModal()" class="btn-cancelar">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
